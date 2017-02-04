@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="backend_main" target="1.8" />
+      <module name="backend_test" target="1.8" />
+      <module name="docker_main" target="1.8" />
+      <module name="docker_test" target="1.8" />
+      <module name="student_registry_main" target="1.8" />
+      <module name="student_registry_test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
