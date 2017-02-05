@@ -1,4 +1,8 @@
-package domain;
+package com.domain;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  * <h1>Faculty Class</h1>
@@ -7,8 +11,9 @@ package domain;
  * </p>
  */
 public class Faculty {
-
-    private String facultyId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long facultyId;
     private String firstName;
     private String lastName;
     private String middleName;
@@ -22,14 +27,14 @@ public class Faculty {
     /**
      * @return The FacultyId is the unique identification system number assigned to each employee.
      */
-    public String getFacultyId() {
+    public long getFacultyId() {
         return facultyId;
     }
 
     /**
      * @param facultyId The id for this faculty member
      */
-    public void setFacultyId(String facultyId) {
+    public void setFacultyId(long facultyId) {
         this.facultyId = facultyId;
     }
 

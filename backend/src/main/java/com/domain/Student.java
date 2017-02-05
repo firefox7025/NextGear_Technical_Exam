@@ -1,7 +1,8 @@
-package domain;
+package com.domain;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
-import java.util.UUID;
 
 /**
  * <h1>Student Class</h1>
@@ -11,7 +12,9 @@ import java.util.UUID;
  * This object should contain get and set actions in order to be serializable.
  * </p>
  */
-public class Student {
+@Entity
+@Table(name = "student")
+public class Student implements Serializable {
 
     private String firstName;
     private String lastName;
@@ -20,7 +23,23 @@ public class Student {
     private String homePhone;
     private String cellPhone;
     private String email;
-    private UUID id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    public Student(String firstName, String lastName, String middleName, Date birthDate, String homePhone, String cellPhone, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.middleName = middleName;
+        this.birthDate = birthDate;
+        this.homePhone = homePhone;
+        this.cellPhone = cellPhone;
+        this.email = email;
+    }
+
+    public Student() {
+
+    }
 
     /**
      * @return The first name of the student
@@ -124,14 +143,21 @@ public class Student {
     /**
      * @return The Students ID number
      */
-    public UUID getId() {
+    public long getId() {
         return id;
     }
 
-    /**
-     * @param id A unique ID number for the student. This field MUST be set in order to be a proper student.
-     */
-    public void setId(UUID id) {
-        this.id = id;
+    @Override
+    public String toString() {
+        return "Student{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", birthDate=" + birthDate +
+                ", homePhone='" + homePhone + '\'' +
+                ", cellPhone='" + cellPhone + '\'' +
+                ", email='" + email + '\'' +
+                ", id=" + id +
+                '}';
     }
 }
