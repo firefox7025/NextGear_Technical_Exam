@@ -2,15 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/NextGear_Technical_Exam.iml" filepath="$PROJECT_DIR$/.idea/modules/NextGear_Technical_Exam.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/NextGear_Technical_Exam_main.iml" filepath="$PROJECT_DIR$/.idea/modules/NextGear_Technical_Exam_main.iml" group="NextGear_Technical_Exam" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/NextGear_Technical_Exam_test.iml" filepath="$PROJECT_DIR$/.idea/modules/NextGear_Technical_Exam_test.iml" group="NextGear_Technical_Exam" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/backend/backend.iml" filepath="$PROJECT_DIR$/.idea/modules/backend/backend.iml" group="backend" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/backend/backend_main.iml" filepath="$PROJECT_DIR$/.idea/modules/backend/backend_main.iml" group="backend" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/backend/backend_test.iml" filepath="$PROJECT_DIR$/.idea/modules/backend/backend_test.iml" group="backend" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/docker/docker.iml" filepath="$PROJECT_DIR$/.idea/modules/docker/docker.iml" group="docker" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/docker/docker_main.iml" filepath="$PROJECT_DIR$/.idea/modules/docker/docker_main.iml" group="docker" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/docker/docker_test.iml" filepath="$PROJECT_DIR$/.idea/modules/docker/docker_test.iml" group="docker" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/student_registry.iml" filepath="$PROJECT_DIR$/.idea/modules/student_registry.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/student_registry_main.iml" filepath="$PROJECT_DIR$/.idea/modules/student_registry_main.iml" group="student_registry" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/student_registry_test.iml" filepath="$PROJECT_DIR$/.idea/modules/student_registry_test.iml" group="student_registry" />
     </modules>
   </component>
 </project>

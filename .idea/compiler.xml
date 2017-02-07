@@ -6,8 +6,8 @@
       <module name="backend_test" target="1.8" />
       <module name="docker_main" target="1.8" />
       <module name="docker_test" target="1.8" />
-      <module name="student_registry_main" target="1.8" />
-      <module name="student_registry_test" target="1.8" />
+      <module name="NextGear_Technical_Exam_main" target="1.8" />
+      <module name="NextGear_Technical_Exam_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

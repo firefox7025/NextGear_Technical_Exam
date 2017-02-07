@@ -1,8 +1,9 @@
 package com.domain;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.UUID;
 
 /**
  * <h1>Faculty Class</h1>
@@ -10,31 +11,37 @@ import javax.persistence.Id;
  * The Faculty class, would be a class used to store and process employee information.
  * </p>
  */
-public class Faculty {
+
+@Entity
+@Table(name = "faculty")
+public class Faculty implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long facultyId;
+    private UUID facultyId;
     private String firstName;
     private String lastName;
     private String middleName;
-    private String birthDate;
+    private Date birthDate;
     private String workEmail;
     private String socialSecurityNumber;
     private String personalEmail;
     private String companyIM;
 
+   public Faculty(){
+        setFacultyId(UUID.randomUUID());
+    }
+
 
     /**
      * @return The FacultyId is the unique identification system number assigned to each employee.
      */
-    public long getFacultyId() {
+    public UUID getFacultyId() {
         return facultyId;
     }
 
     /**
      * @param facultyId The id for this faculty member
      */
-    public void setFacultyId(long facultyId) {
+    public void setFacultyId(UUID facultyId) {
         this.facultyId = facultyId;
     }
 
@@ -84,14 +91,14 @@ public class Faculty {
     /**
      * @return The birthday of the employee
      */
-    public String getBirthdate() {
+    public Date getBirthdate() {
         return birthDate;
     }
 
     /**
      * @param birthDate Sets the birthday of employee
      */
-    public void setBirthdate(String birthDate) {
+    public void setBirthdate(Date birthDate) {
         this.birthDate = birthDate;
     }
 
