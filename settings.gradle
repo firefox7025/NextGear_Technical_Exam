@@ -1,4 +1,2 @@
-rootProject.name = 'student_registry'
-include 'backend'
-include 'docker'
+include 'backend', 'docker'
 

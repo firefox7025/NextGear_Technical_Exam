@@ -1,14 +1,21 @@
 package com.controllers;
 
 import com.domain.Student;
+import com.google.gson.Gson;
 import com.repository.StudentClient;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.io.FileReader;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -17,12 +24,16 @@ import java.util.Date;
  * This is the controller for preforming creation, reading, updating, and Deleting
  * </p>
  */
+@RunWith(SpringJUnit4ClassRunner.class)
 @RestController
 @RequestMapping(value = "/students", produces = MediaType.APPLICATION_JSON_VALUE)
 public class StudentCRUD {
 
     @Autowired
     private StudentClient repository;
+
+    @Autowired
+    private ResourceLoader resourceLoader;
 
     @RequestMapping(method = RequestMethod.GET)
     public Student getStudent(@RequestParam(value = "id") long id) {
@@ -140,6 +151,30 @@ public class StudentCRUD {
 
         return student;
     }
+
+
+    /**
+     * <h1>Populate Students</h1>
+     * @throws Exception
+     *
+     * <p>
+     *     Systems without students are boring!
+     *     So add 100 students to the system with a single rest call.
+     * </p>
+     *
+     */
+    @RequestMapping(value = "populate")
+    public void generateStudents() throws Exception {
+
+        Gson gson = new Gson();
+        Resource resource = resourceLoader.getResource("classpath:studentdata.json");
+
+        Student[] students = gson.fromJson(new FileReader(resource.getFile()), Student[].class);
+        Iterable<Student> iterable = Arrays.asList(students);
+        repository.save(iterable);
+
+    }
+
 
 
 }

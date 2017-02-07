@@ -3,6 +3,7 @@ package com.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * <h1>Student Class</h1>
@@ -24,8 +25,8 @@ public class Student implements Serializable {
     private String cellPhone;
     private String email;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private UUID Id;
+
 
     public Student(String firstName, String lastName, String middleName, Date birthDate, String homePhone, String cellPhone, String email) {
         this.firstName = firstName;
@@ -38,7 +39,7 @@ public class Student implements Serializable {
     }
 
     public Student() {
-
+        setId(UUID.randomUUID());
     }
 
     /**
@@ -141,11 +142,20 @@ public class Student implements Serializable {
     }
 
     /**
-     * @return The Students ID number
+     * @return The internal ID for the user.
      */
-    public long getId() {
-        return id;
+    public UUID getId() {
+
+        return Id;
     }
+
+    /**
+     * @param uuid Sets the internal UUID
+     */
+    public void setId(UUID uuid) {
+        this.Id = uuid;
+    }
+
 
     @Override
     public String toString() {
@@ -157,7 +167,8 @@ public class Student implements Serializable {
                 ", homePhone='" + homePhone + '\'' +
                 ", cellPhone='" + cellPhone + '\'' +
                 ", email='" + email + '\'' +
-                ", id=" + id +
+                ", Id=" + Id +
                 '}';
     }
+
 }
