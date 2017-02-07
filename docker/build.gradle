@@ -1,12 +1,20 @@
-group 'com.nextgear.technicalexam'
-version '1.0-SNAPSHOT'
+plugins {
+    id 'distribution' }
 
-apply plugin: 'java'
+distributions {
+    main {
+        baseName = 'NextGear_StudentRegistry'
+        contents {
+            into 'StudentRegistry'
+            from 'src/main/docker'
+            from tasks.getByPath( ':backend:war' ).outputs.files.getSingleFile() } } }
 
-repositories {
-    mavenCentral()
-}
+distTar {
+    compression = Compression.GZIP
+    doLast {
+        project.copy {
+            into rootProject.buildDir
+            from distTar } } }
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
-}
+[ distTar, distZip, installDist ].each {
+    it.dependsOn ':backend:bootRepackage' }
