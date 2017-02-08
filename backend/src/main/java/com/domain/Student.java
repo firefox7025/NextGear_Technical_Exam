@@ -1,9 +1,10 @@
 package com.domain;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.UUID;
 
 /**
  * <h1>Student Class</h1>
@@ -17,158 +18,114 @@ import java.util.UUID;
 @Table(name = "student")
 public class Student implements Serializable {
 
+    @Id
+    private String SIN;
     private String firstName;
     private String lastName;
     private String middleName;
+    private String personalEmail;
+    private double amountOwed;
+    private String schoolEmail;
+    private String homeAddress;
+    private String socialSecurityNumber;
     private Date birthDate;
-    private String homePhone;
-    private String cellPhone;
-    private String email;
-    @Id
-    private UUID Id;
+    private String gender;
+    private String university;
 
 
-    public Student(String firstName, String lastName, String middleName, Date birthDate, String homePhone, String cellPhone, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.middleName = middleName;
-        this.birthDate = birthDate;
-        this.homePhone = homePhone;
-        this.cellPhone = cellPhone;
-        this.email = email;
+    public String getSIN() {
+        return SIN;
     }
 
-    public Student() {
-        setId(UUID.randomUUID());
+    public void setSIN(String SIN) {
+        this.SIN = SIN;
     }
 
-    /**
-     * @return The first name of the student
-     */
     public String getFirstName() {
         return firstName;
     }
 
-    /**
-     * @param firstName Set the first name of the student
-     */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    /**
-     * @return The last name of the student
-     */
     public String getLastName() {
         return lastName;
     }
 
-    /**
-     * @param lastName Set the last name of the student
-     */
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    /**
-     * @return The middle name of the student
-     */
     public String getMiddleName() {
         return middleName;
     }
 
-    /**
-     * @param middleName Set the middle name of the student
-     */
     public void setMiddleName(String middleName) {
         this.middleName = middleName;
     }
 
-    /**
-     * @return The birth date of the student (java.util.date format)
-     */
+    public String getPersonalEmail() {
+        return personalEmail;
+    }
+
+    public void setPersonalEmail(String personalEmail) {
+        this.personalEmail = personalEmail;
+    }
+
+    public double getAmountOwed() {
+        return amountOwed;
+    }
+
+    public void setAmountOwed(double amountOwed) {
+        this.amountOwed = amountOwed;
+    }
+
+    public String getSchoolEmail() {
+        return schoolEmail;
+    }
+
+    public void setSchoolEmail(String schoolEmail) {
+        this.schoolEmail = schoolEmail;
+    }
+
+    public String getHomeAddress() {
+        return homeAddress;
+    }
+
+    public void setHomeAddress(String homeAddress) {
+        this.homeAddress = homeAddress;
+    }
+
+    public String getSocialSecurityNumber() {
+        return socialSecurityNumber;
+    }
+
+    public void setSocialSecurityNumber(String socialSecurityNumber) {
+        this.socialSecurityNumber = socialSecurityNumber;
+    }
+
     public Date getBirthDate() {
         return birthDate;
     }
 
-    /**
-     * @param birthDate Set the birthdate of the student
-     */
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 
-    /**
-     * @return The home phone of the student
-     */
-    public String getHomePhone() {
-        return homePhone;
+    public String getGender() {
+        return gender;
     }
 
-
-    /**
-     * @param homePhone Sets the home phone number of the student
-     */
-    public void setHomePhone(String homePhone) {
-        this.homePhone = homePhone;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
-    /**
-     * @return The students cell phone
-     */
-    public String getCellPhone() {
-        return cellPhone;
+    public String getUniversity() {
+        return university;
     }
 
-    /**
-     * @param cellPhone Sets the students cellphone number
-     */
-    public void setCellPhone(String cellPhone) {
-        this.cellPhone = cellPhone;
+    public void setUniversity(String university) {
+        this.university = university;
     }
-
-    /**
-     * @return The Students email address
-     */
-    public String getEmail() {
-        return email;
-    }
-
-    /**
-     * @param email Sets the students email
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    /**
-     * @return The internal ID for the user.
-     */
-    public UUID getId() {
-
-        return Id;
-    }
-
-    /**
-     * @param uuid Sets the internal UUID
-     */
-    public void setId(UUID uuid) {
-        this.Id = uuid;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", middleName='" + middleName + '\'' +
-                ", birthDate=" + birthDate +
-                ", homePhone='" + homePhone + '\'' +
-                ", cellPhone='" + cellPhone + '\'' +
-                ", email='" + email + '\'' +
-                ", Id=" + Id +
-                '}';
-    }
-
 }

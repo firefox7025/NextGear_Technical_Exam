@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
  * </p>
  */
 @Repository
-public interface FacultyClient extends CrudRepository<Faculty, Long> {
+public interface FacultyClient extends CrudRepository<Faculty, String> {
         }

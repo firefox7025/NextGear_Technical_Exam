@@ -8,15 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.FileReader;
 import java.util.Arrays;
-import java.util.Date;
 
 /**
  * <h1>Student CRUD Operations</h1>
@@ -36,13 +32,13 @@ public class StudentCRUD {
     private ResourceLoader resourceLoader;
 
     @RequestMapping(method = RequestMethod.GET)
-    public Student getStudent(@RequestParam(value = "id") long id) {
+    public Student getStudent(@RequestParam(value = "id") String id) {
 
         return repository.findOne(id);
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
-    public boolean DeleteStudent(@RequestParam(value = "id") long id) {
+    public boolean DeleteStudent(@RequestParam(value = "id") String id) {
         if (repository.exists(id)) {
             repository.delete(id);
             return true;
@@ -56,54 +52,15 @@ public class StudentCRUD {
      * <h1>Update Student</h1>
      * <p>This method is the endpoint that allows for </p>
      *
-     * @param id         required
-     * @param firstName  not required
-     * @param middleName not required
-     * @param lastName   not required
-     * @param birthDate  not required
-     * @param homePhone  not required
-     * @param cellphone  not required
-     * @param email      not required
+     * @param student The student object to be updated.
      * @return updated student values
      */
     @RequestMapping(method = RequestMethod.POST)
-    public Student updateStudent(
-            @RequestParam(value = "id") long id,
-            @RequestParam(value = "fName", required = false) String firstName,
-            @RequestParam(value = "mName", required = false) String middleName,
-            @RequestParam(value = "lName", required = false) String lastName,
-            @RequestParam(value = "birthDate", required = false) Date birthDate,
-            @RequestParam(value = "homePhone", required = false) String homePhone,
-            @RequestParam(value = "cellphone", required = false) String cellphone,
-            @RequestParam(value = "email", required = false) String email) {
-
-        Student student = repository.findOne(id);
-
-        if (firstName != null) {
-            student.setFirstName(firstName);
-        }
-        if (middleName != null) {
-            student.setMiddleName(middleName);
-        }
-        if (lastName != null) {
-            student.setLastName(lastName);
-        }
-        if (birthDate != null) {
-            student.setBirthDate(birthDate);
-        }
-        if (homePhone != null) {
-            student.setHomePhone(homePhone);
-        }
-        if (cellphone != null) {
-            student.setCellPhone(cellphone);
-        }
-        if (email != null) {
-            student.setEmail(email);
-        }
+    public Student updateStudent(@RequestBody Student student) {
 
         repository.save(student);
 
-        return repository.findOne(id);
+        return repository.findOne(student.getSIN());
     }
 
 
@@ -118,50 +75,23 @@ public class StudentCRUD {
      * a random version four UUID seems like a reasonable choice.
      * </p>
      *
-     * @param birthDate  The students birth date
-     * @param cellphone  The cellphone number of the student
-     * @param email      The email of the student
-     * @param firstName  The first name of the student
-     * @param middleName The middle name of the student
-     * @param homePhone  The home phone of the student
-     * @param lastName   The last name of the student
+     * @param student  A student entry object.
      */
 
     @RequestMapping(method = RequestMethod.PUT)
-    public Student createStudent(
-            @RequestParam(value = "fName") String firstName,
-            @RequestParam(value = "mName", required = false) String middleName,
-            @RequestParam(value = "lName") String lastName,
-            @RequestParam(value = "birthDate") Date birthDate,
-            @RequestParam(value = "homePhone", required = false) String homePhone,
-            @RequestParam(value = "cellphone") String cellphone,
-            @RequestParam(value = "email") String email
-    ) {
-
-        Student student = new Student();
-        student.setFirstName(firstName);
-        student.setMiddleName(middleName);
-        student.setLastName(lastName);
-        student.setBirthDate(birthDate);
-        student.setHomePhone(homePhone);
-        student.setCellPhone(cellphone);
-        student.setEmail(email);
-
+    public Student createStudent(@RequestBody Student student) {
         repository.save(student);
-
         return student;
     }
 
 
     /**
      * <h1>Populate Students</h1>
-     * @throws Exception
      *
-     * <p>
-     *     Systems without students are boring!
-     *     So add 100 students to the system with a single rest call.
-     * </p>
-     *
+     * @throws Exception <p>
+     *                   Systems without students are boring!
+     *                   So add 100 students to the system with a single rest call.
+     *                   </p>
      */
     @RequestMapping(value = "populate")
     public void generateStudents() throws Exception {
@@ -174,7 +104,6 @@ public class StudentCRUD {
         repository.save(iterable);
 
     }
-
 
 
 }

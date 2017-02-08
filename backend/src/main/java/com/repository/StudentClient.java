@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
  * <p>Using spring date repository, provides basic crud operations</p>
  */
 @Repository
-public interface StudentClient extends CrudRepository<Student, Long> {
+public interface StudentClient extends CrudRepository<Student, String> {
 }

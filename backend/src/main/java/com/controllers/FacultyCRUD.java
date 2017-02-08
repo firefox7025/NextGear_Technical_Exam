@@ -8,14 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.FileReader;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * <h1>Faculty CRUD operations</h1>
@@ -32,14 +30,14 @@ public class FacultyCRUD {
 
 
     @RequestMapping(method = RequestMethod.GET)
-    public Faculty getFaculty(@RequestParam(value = "id") long id) {
+    public Faculty getFaculty(@RequestParam(value = "id") String id) {
 
         return repository.findOne(id);
     }
 
 
     @RequestMapping(method = RequestMethod.DELETE)
-    public boolean DeleteStudent(@RequestParam(value = "id") long id) {
+    public boolean DeleteStudent(@RequestParam(value = "id") String id) {
         if (repository.exists(id)) {
             repository.delete(id);
             return true;
@@ -50,50 +48,14 @@ public class FacultyCRUD {
 
 
     /**
-     * <h1>Update Student</h1>
+     * <h1>Update Faculty</h1>
      * <p>This method is the endpoint that allows for </p>
-     *
-     * @param id         required
-     * @param firstName  not required
-     * @param middleName not required
-     * @param lastName   not required
-     * @param birthDate  not required
-     * @param workEmail  not required
      * @return updated student values
      */
     @RequestMapping(method = RequestMethod.POST)
-    public Faculty updateFaculty(
-            @RequestParam(value = "id") long id,
-            @RequestParam(value = "fName", required = false) String firstName,
-            @RequestParam(value = "mName", required = false) String middleName,
-            @RequestParam(value = "lName", required = false) String lastName,
-            @RequestParam(value = "birthDate", required = false) Date birthDate,
-            @RequestParam(value = "workEmail", required = false) String workEmail,
-            @RequestParam(value = "socialSecurityNumber", required = false) String socialSecurityNumber,
-            @RequestParam(value = "personalEmail", required = false) String personalEmail,
-            @RequestParam(value = "companyIM", required = false) String companyIM) {
-
-        Faculty faculty = repository.findOne(id);
-
-        if (firstName != null) {
-            faculty.setFirstName(firstName);
-        }
-        if (middleName != null) {
-            faculty.setMiddleName(middleName);
-        }
-        if (lastName != null) {
-            faculty.setLastName(lastName);
-        }
-        if (birthDate != null) {
-            faculty.setBirthdate(birthDate);
-        }
-        if (workEmail != null) {
-            faculty.setWorkEmail(workEmail);
-        }
-
+    public Faculty updateFaculty(@RequestBody Faculty faculty) {
         repository.save(faculty);
-
-        return repository.findOne(id);
+        return repository.findOne(faculty.getEIN());
     }
 
 
@@ -108,45 +70,22 @@ public class FacultyCRUD {
      * a random version four UUID seems like a reasonable choice.
      * </p>
      *
-     * @param birthDate  The students birth date
-     * @param workEmail      The email of the faculty
-     * @param firstName  The first name of the faculty
-     * @param middleName The middle name of the faculty
-     * @param lastName   The last name of the faculty
-     * @param socialSecurityNumber The Social security number of the faculty member
-     * @param companyIM Because what company doesn't have an im address.
-     *
      */
 
     @RequestMapping(method = RequestMethod.PUT)
-    public Faculty createStudent(
-            @RequestParam(value = "fName", required = false) String firstName,
-            @RequestParam(value = "mName", required = false) String middleName,
-            @RequestParam(value = "lName", required = false) String lastName,
-            @RequestParam(value = "birthDate", required = false) Date birthDate,
-            @RequestParam(value = "workEmail", required = false) String workEmail,
-            @RequestParam(value = "socialSecurityNumber", required = false) String socialSecurityNumber,
-            @RequestParam(value = "personalEmail", required = false) String personalEmail,
-            @RequestParam(value = "companyIM", required = false) String companyIM) {
+    public Faculty createFaculty(@RequestBody Faculty faculty) {
 
-        Faculty faculty = new Faculty();
-        faculty.setFirstName(firstName);
-        faculty.setMiddleName(middleName);
-        faculty.setLastName(lastName);
-        faculty.setBirthdate(birthDate);
-        faculty.setWorkEmail(workEmail);
-        faculty.setSocialSecurityNumber(socialSecurityNumber);
-        faculty.setPersonalEmail(personalEmail);
-        faculty.setCompanyIM(companyIM);
+        if(faculty.getEIN() == null){
+            faculty.setEIN(UUID.randomUUID().toString());
+        }
 
         repository.save(faculty);
-
         return faculty;
     }
 
 
     /**
-     * <h1>Populate Students</h1>
+     * <h1>Populate Faculty</h1>
      *
      * @throws Exception <p>
      *                   Systems without students are boring!
@@ -154,7 +93,7 @@ public class FacultyCRUD {
      *                   </p>
      */
     @RequestMapping(value = "populate")
-    public void generateStudents(){
+    public void generateFaculty(){
 
         Gson gson = new Gson();
         Resource resource = resourceLoader.getResource("classpath:facultydata.json");
