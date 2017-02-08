@@ -1,2 +1,2 @@
-include 'backend', 'docker'
+include 'backend', 'docker', 'frontend:ui'
 

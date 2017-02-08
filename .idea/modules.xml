@@ -9,8 +9,8 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/backend/backend_main.iml" filepath="$PROJECT_DIR$/.idea/modules/backend/backend_main.iml" group="backend" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/backend/backend_test.iml" filepath="$PROJECT_DIR$/.idea/modules/backend/backend_test.iml" group="backend" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/docker/docker.iml" filepath="$PROJECT_DIR$/.idea/modules/docker/docker.iml" group="docker" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/docker/docker_main.iml" filepath="$PROJECT_DIR$/.idea/modules/docker/docker_main.iml" group="docker" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/docker/docker_test.iml" filepath="$PROJECT_DIR$/.idea/modules/docker/docker_test.iml" group="docker" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/frontend/frontend.iml" filepath="$PROJECT_DIR$/.idea/modules/frontend/frontend.iml" group="frontend" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/frontend/ui/ui.iml" filepath="$PROJECT_DIR$/.idea/modules/frontend/ui/ui.iml" group="frontend/ui" />
     </modules>
   </component>
 </project>
