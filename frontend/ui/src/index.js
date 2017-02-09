@@ -1,10 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import TodoApp from './TodoApp'
-import './index.css';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap-theme.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./components/Home/js/App";
+import TodoApp from "./components/TodoApp";
+import "./index.css";
 
 
 ReactDOM.render(
@@ -12,7 +10,4 @@ ReactDOM.render(
     document.getElementById('root')
 );
 
-ReactDOM.render(
-    <TodoApp/>,
-    document.getElementById('bar')
-)
+ReactDOM.render(<TodoApp />, document.getElementById('todo'));

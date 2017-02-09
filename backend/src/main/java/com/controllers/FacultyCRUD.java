@@ -29,8 +29,8 @@ public class FacultyCRUD {
     private ResourceLoader resourceLoader;
 
 
-    @RequestMapping(method = RequestMethod.GET)
-    public Faculty getFaculty(@RequestParam(value = "id") String id) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public Faculty getFaculty(@PathVariable(value = "id") String id) {
 
         return repository.findOne(id);
     }

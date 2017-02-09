@@ -31,8 +31,8 @@ public class StudentCRUD {
     @Autowired
     private ResourceLoader resourceLoader;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public Student getStudent(@RequestParam(value = "id") String id) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public Student getStudent(@PathVariable(value = "id") String id) {
 
         return repository.findOne(id);
     }

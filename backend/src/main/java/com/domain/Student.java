@@ -1,5 +1,7 @@
 package com.domain;
 
+import org.springframework.beans.factory.annotation.Required;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -37,6 +39,7 @@ public class Student implements Serializable {
         return SIN;
     }
 
+    @Required
     public void setSIN(String SIN) {
         this.SIN = SIN;
     }
