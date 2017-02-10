@@ -26,7 +26,7 @@ class Form extends React.Component {
 
     render() {
         return (
-            <form action="http://localhost:8080/students"  method="get">
+            <form action="/students"  method="get">
                 <br />
                 <label>
                     First Name: &nbsp;&nbsp;&nbsp;&nbsp;
@@ -34,7 +34,8 @@ class Form extends React.Component {
                         name="firstName"
                         type="text"
                         value={this.state.firstName}
-                        style={{height: 40, borderColor: 'gray', borderWidth: 1, color: 'black'}} />
+                        style={{height: 40, borderColor: 'gray', borderWidth: 1, color: 'black'}}
+                    onChange={this.handleInputChange} />
                 </label>
                 <br />
                 <label>
@@ -43,7 +44,8 @@ class Form extends React.Component {
                         name="lastName"
                         type="text"
                         value={this.state.lastName}
-                        style={{height: 40, borderColor: 'gray', borderWidth: 1, color: 'black'}} />
+                        style={{height: 40, borderColor: 'gray', borderWidth: 1, color: 'black'}}
+                    onChange={this.handleInputChange} />
                 </label>
                 <br /><br />
                 <input
