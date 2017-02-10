@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.FileReader;
 import java.util.Arrays;
+import java.util.UUID;
 
 /**
  * <h1>Student CRUD Operations</h1>
@@ -82,6 +83,29 @@ public class StudentCRUD {
     public Student createStudent(@RequestBody Student student) {
         repository.save(student);
         return student;
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public Student createStudent(
+            @RequestParam(value = "firstName", required = false) String firstName,
+            @RequestParam(value = "middleName", required = false) String middleName,
+            @RequestParam(value = "lastName", required = false) String lastName,
+            @RequestParam(value = "personalEmail", required = false) String personalEmail,
+            @RequestParam(value = "homeAddress", required = false) String homeAddress
+    ){
+        Student student = new Student();
+        student.setSIN(UUID.randomUUID().toString());
+        student.setFirstName(firstName);
+        student.setMiddleName(middleName);
+        student.setLastName(lastName);
+        student.setPersonalEmail(personalEmail);
+        student.setHomeAddress(homeAddress);
+        repository.save(student);
+
+
+        //could have just returned the student object, but this will allows me to validate the previous save.
+        return repository.findOne(student.getSIN());
+
     }
 
 

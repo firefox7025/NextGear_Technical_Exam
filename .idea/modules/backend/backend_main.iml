@@ -5,6 +5,7 @@
       <configuration>
         <webroots>
           <root url="file://$MODULE_DIR$/../../../backend/src/main/webapp" relative="/" />
+          <root url="file://$MODULE_DIR$/../../../frontend/ui/build" relative="/" />
         </webroots>
       </configuration>
     </facet>

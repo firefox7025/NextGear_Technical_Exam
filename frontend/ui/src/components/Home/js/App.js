@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import "../css/App.css";
 import "../css/font-awesome.min.css";
+import Form from "../../../components/CreateStudentForm/js/Form"
 
 
 function footer() {
@@ -10,6 +11,7 @@ function footer() {
         </footer>
     );
 }
+
 
 
 class App extends Component {
@@ -23,12 +25,13 @@ class App extends Component {
                         <h1>NextGear Student Registry</h1>
                         <nav>
                             <ul>
-                                <li><a href="http://google.com">Create</a></li>
+                                <li><a href="#">Create</a></li>
                                 <li><a href="#">Read</a></li>
                                 <li><a href="#">Update</a></li>
                                 <li><a href="#">Delete</a></li>
                             </ul>
                         </nav>
+                        <Form/>
                     </header>
                     {footer()}
                 </div>

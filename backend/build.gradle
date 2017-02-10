@@ -19,6 +19,7 @@ apply plugin: 'org.springframework.boot'
 war {
     baseName = 'NextGear'
     version = version
+    from '../frontend/ui/build'
 }
 
 repositories {

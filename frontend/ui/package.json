@@ -11,7 +11,9 @@
     "react-bootstrap": "^0.30.7",
     "react-dom": "^15.4.2",
     "react-fontawesome": "^1.5.0",
-    "react-icons": "^2.2.3"
+    "react-icons": "^2.2.3",
+    "remarkable-react": "0.0.2",
+    "remarkable": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
